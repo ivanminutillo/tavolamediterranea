@@ -1,0 +1,82 @@
+<div class="page">
+<aside>
+  <ul class="menu">
+  <!-- menu header text -->
+  <li class="divider" data-content="Andamento analisi">
+  </li>
+  <!-- menu item standard -->
+  <li class="menu-item">
+    <%= live_patch "Emocromo",
+     to: "/andamento/emocromo",
+     class: if @selected_tab == "andamento", do: "navigation__item active", else: "navigation__item"
+    %>
+  </li>
+  <li class="menu-item">
+    <%= live_patch "Chimica clinica e Immunometria",
+     to: "/andamento/clinica",
+     class: if @selected_tab == "clinica", do: "navigation__item active", else: "navigation__item"
+    %>
+  </li>
+  <li class="menu-item">
+    <%= live_patch "Bilirubina",
+     to: "/andamento/bilirubina",
+     class: if @selected_tab == "bilirubina", do: "navigation__item active", else: "navigation__item"
+    %>
+  </li>
+  </ul>
+
+</aside>
+<section class="page__main">
+
+<%= cond do %>
+    <% @selected_tab == "emocromo" ->  %>
+      <h1 class="chart_title">Emocromo</h1>
+      <div id="emocromo" data-emo="<%= @data %>" data-labels="<%= @labels %>" phx-hook="Emocromo">
+        <%= for chart <- @raw do %>
+        <div class="analisi">
+        <h2><%= chart.name %></h2>
+        <div class="bar_chart">
+          <canvas id="<%= chart.name %>" width="100" heigth="30"></canvas>
+        </div>
+      </div>
+      <% end %>
+      </div>
+    <% @selected_tab == "clinica" ->  %>
+    <h1 class="chart_title">Chimica clinica e Immunometria</h1>
+<div id="immunometria" data-emo="<%= @immunometria_data %>" data-labels="<%= @labels %>" phx-hook="Emocromo">
+<%= for chart <- @immunometria_raw do %>
+  <div class="analisi">
+  <h2><%= chart.name %></h2>
+  <div class="bar_chart">
+    <canvas id="<%= chart.name %>" width="100" heigth="30"></canvas>
+  </div>
+  </div>
+<% end %>
+</div>
+<% @selected_tab == "bilirubina" ->  %>
+<h1 class="chart_title">Bilirubina frazionata</h1>
+<div id="bilirubina" data-emo="<%= @bilirubina_data %>" data-labels="<%= @labels %>" phx-hook="Emocromo">
+<%= for chart <- @bilirubina_raw do %>
+  <div class="analisi">
+  <h2><%= chart.name %></h2>
+  <div class="bar_chart">
+    <canvas id="<%= chart.name %>" width="100" heigth="30"></canvas>
+  </div>
+  </div>
+<% end %>
+</div>
+   <% true -> %>
+   <h1 class="chart_title">Emocromo</h1>
+      <div id="emocromo" data-emo="<%= @data %>" data-labels="<%= @labels %>" phx-hook="Emocromo">
+        <%= for chart <- @raw do %>
+        <div class="analisi">
+        <h2><%= chart.name %></h2>
+        <div class="bar_chart">
+          <canvas id="<%= chart.name %>" width="100" heigth="30"></canvas>
+        </div>
+      </div>
+      <% end %>
+      </div>
+    <% end %>
+</section>
+</div>
