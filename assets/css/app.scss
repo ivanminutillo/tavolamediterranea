@@ -164,7 +164,7 @@ a {
   }
 }
 
-#alimenti {
+#alimenti, #tipo {
   h1 {
     font-size: 22px;
     text-align: center;
@@ -180,4 +180,44 @@ a {
   display: grid;
   grid-template-columns: 600px 1fr;
   column-gap: 8px;
+}
+
+
+#tipo {
+  margin-top: 8px;
+    .table td, .table th {
+      font-size: 14px;
+    }
+}
+
+
+.nutritional {
+  background: white;
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 20px rgba(0,0,0,.1);
+  margin-bottom: 16px;
+  h1 {
+    font-size: 22px;
+  }
+  aside {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 8px;
+  }
+  .nutritional_wrapper {
+    border-radius: 6px;
+    border: 1px solid #dadada;
+    padding: 8px;
+    h4 {
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 200;
+    }
+  }
 }

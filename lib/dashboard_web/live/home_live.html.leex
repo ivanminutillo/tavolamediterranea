@@ -1,10 +1,72 @@
+<section class="nutritional">
+<h1>Valori nutrizionali giornata tipo</h1>
+<aside>
+<div class="nutritional_wrapper">
+  <h4>Kcal</h4>
+  <h1><%= @kcal %></h1>
+</div>
+<div class="nutritional_wrapper">
+  <h4>Carboidrati</h4>
+  <h1><%= @carb %></h1>
+</div>
+<div class="nutritional_wrapper">
+  <h4>Proteine</h4>
+  <h1><%= @protein %></h1>
+</div>
+<div class="nutritional_wrapper">
+  <h4>Grassi</h4>
+  <h1><%= @fat %></h1>
+</div>
+<div class="nutritional_wrapper">
+  <h4>Zuccheri</h4>
+  <h1><%= @sugar %></h1>
+</div>
+<div class="nutritional_wrapper">
+  <h4>Fibre</h4>
+  <h1><%= @fiber %></h1>
+</div>
+</aside>
+</section>
 <div class="row">
+<div>
 <div id="antropometria" data-misure="<%= @misure %>" phx-hook="Antropometria">
   <h1>Andamento misure antropometriche</h1>
   <canvas id="misure" width="400" heigth="400"></canvas>
 </div>
+<div id="tipo">
+  <h1>Valori nutrizionali per alimento giornata tipo</h1>
+  <table class="table table-striped table-hover">
+   <tr>
+    <th>#</th>
+    <th>Qty</th>
+    <th>Kcal</th>
+    <th>Carb</th>
+    <th>Sugar</th>
+    <th>Fat</th>
+    <th>satured</th>
+    <th>Protein</th>
+    <th>Fiber</th>
+    <th>Salt</th>
+   </tr>
+   <%= for trs <- @day do %>
+    <tr>
+    <td><%= trs[:name] %></td>
+    <td><%= trs[:q] %></td>
+    <td><%= trs[:kcal] %></td>
+    <td><%= trs[:carbo] %></td>
+    <td><%= trs[:sugar] %></td>
+    <td><%= trs[:grassi] %></td>
+    <td><%= trs[:saturated] %></td>
+    <td><%= trs[:protein] %></td>
+    <td><%= trs[:fiber] %></td>
+    <td><%= trs[:salt] %></td>
+   </tr>
+    <% end %>
+  </table>
+</div>
+</div>
 <div id="alimenti">
- <h1>Dieta settimanale</h1>
+ <h1>Consumo alimenti / settimana</h1>
  <table class="table table-striped table-hover">
    <tr>
     <th>Alimento</th>
@@ -13,7 +75,7 @@
    <%= for trs <- @diet do %>
     <tr>
     <td><%= trs[:name] %></td>
-    <td><%= trs[:amount] %>  <%= trs[:unit] %></td>
+    <td>~ <%= trs[:amount] %>  <%= trs[:unit] %></td>
    </tr>
     <% end %>
   </table>
