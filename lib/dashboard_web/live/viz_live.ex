@@ -2,7 +2,7 @@ defmodule DashboardWeb.VizLive do
   use DashboardWeb, :live_view
   import Xlsxir
   require Logger
-  def path(), do: "./lib/dashboard_web/live/xlsx/analisi_ivan.xlsx"
+  # def path(), do: "./lib/dashboard_web/live/xlsx/analisi_ivan.xlsx"
   def path_tullio(), do: "./lib/dashboard_web/live/xlsx/analisi_tullio.xlsx"
 
   def convert_to_struct(sheet) do

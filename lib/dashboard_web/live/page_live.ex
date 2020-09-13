@@ -3,7 +3,7 @@ defmodule DashboardWeb.PageLive do
   import Xlsxir
   require Logger
 
-  def path(), do: "./lib/dashboard_web/live/xlsx/analisi_ivan.xlsx"
+  # def path(), do: "./lib/dashboard_web/live/xlsx/analisi_ivan.xlsx"
   def path_tullio(), do: "./lib/dashboard_web/live/xlsx/analisi_tullio.xlsx"
 
   def extract_sheet(sheet) do

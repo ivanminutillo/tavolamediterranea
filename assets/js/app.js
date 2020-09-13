@@ -21,6 +21,42 @@ import {Chart} from 'chart.js'
 
 let Hooks = {}
 
+function dynamicColors() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgba(" + r + "," + g + "," + b + ", 0.2)";
+}
+
+Hooks.Antropometria = {
+    mounted(){
+        let dataset = JSON.parse(this.el.dataset.misure)
+        let labels = dataset.list.shift()
+        let d = dataset.list
+        console.log(labels)
+        
+         var ctx = document.getElementById("misure");
+         return new Chart(ctx, {
+          type: 'radar',
+          data: {
+           labels: labels.slice(1),
+           datasets: d.map(data => {
+               console.log(data)
+               
+               return {
+                   label: data[0],
+                   data: data.slice(1),
+                   backgroundColor: dynamicColors()
+               }
+           })
+          },
+         });
+        
+        }
+}
+
+
+
 Hooks.Emocromo = {
     mounted(){
      let dataset = JSON.parse(this.el.dataset.emo)
